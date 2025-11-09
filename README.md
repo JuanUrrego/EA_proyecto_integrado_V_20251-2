@@ -1,4 +1,4 @@
-# EA_proyecto_integrado_V_20251-2
+[Lifestyle_and_Health_Risk_Prediction_Synthetic_Dataset (1).csv](https://github.com/user-attachments/files/23443070/Lifestyle_and_Health_Risk_Prediction_Synthetic_Dataset.1.csv)# EA_proyecto_integrado_V_20251-2
 
 # Proyecto: Predicción de Riesgos de Salud a partir de Estilos de Vida
 
@@ -10,7 +10,10 @@ Evidenciar el flujo **dataset (Kaggle) → SQLite → CSV** y la documentación 
 ## Dataset
 - **Nombre**: Lifestyle_and_Health_Risk_Prediction_Dataset  
 - **Autor(a)**: zahranusrat  
-- **Enlace**: https://www.kaggle.com/datasets/zahranusrat/lifestyle-and-health-risk-prediction-dataset  
+- **Enlace**: https://www.kaggle.com/datasets/zahranusrat/lifestyle-and-health-risk-prediction-dataset
+- Licencia: CC0: Public Domain (Dominio Público)
+- Dataset: 
+[Uploading Lifestyle_and_Health_Risk_Prediction_Synthetic_Dataset (1).csv…]()
 
 
 ## Requisitos
