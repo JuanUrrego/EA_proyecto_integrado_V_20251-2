@@ -1,0 +1,69 @@
+# ================================================================
+# 🧾 CONFIGURACIÓN GENERAL DE LÍNEAS Y ARCHIVOS - PROYECTO INTEGRADO V
+# ---------------------------------------------------------------
+# Normaliza saltos de línea entre Windows (CRLF) y Unix (LF)
+# ================================================================
+
+# Por defecto, Git detecta automáticamente texto y normaliza saltos de línea
+* text=auto
+
+# ---------------------------------
+# Archivos de código fuente
+# ---------------------------------
+*.py     text eol=lf
+*.ipynb  text eol=lf
+*.json   text eol=lf
+*.yml    text eol=lf
+*.yaml   text eol=lf
+*.md     text eol=lf
+*.txt    text eol=lf
+
+# ---------------------------------
+# Datos y reportes
+# ---------------------------------
+*.csv    text eol=lf
+*.tsv    text eol=lf
+*.sql    text eol=lf
+*.log    text eol=lf
+
+# ---------------------------------
+# Documentos binarios (NO convertir)
+# ---------------------------------
+*.db     binary
+*.sqlite binary
+*.xlsx   binary
+*.xls    binary
+*.xlsm   binary
+*.zip    binary
+*.rar    binary
+*.pdf    binary
+*.png    binary
+*.jpg    binary
+*.jpeg   binary
+*.gif    binary
+
+# ---------------------------------
+# Scripts, configuraciones y otros
+# ---------------------------------
+*.bat    text eol=crlf
+*.ps1    text eol=crlf
+*.sh     text eol=lf
+*.env    text eol=lf
+
+# ---------------------------------
+# Licencias y documentación
+# ---------------------------------
+LICENSE* text eol=lf
+README*  text eol=lf
+
+# ---------------------------------
+# Control especial: forzar CRLF solo en Windows batch
+# ---------------------------------
+*.cmd    text eol=crlf
+
+# ================================================================
+# 🔍 NOTAS:
+# - Los archivos binarios nunca se alteran (db, xlsx, zip, imágenes).
+# - Los archivos de texto siempre usarán saltos LF dentro del repo.
+# - En Windows, Git los convertirá a CRLF solo en tu copia local.
+# ================================================================
