@@ -11,18 +11,26 @@ on:
   workflow_dispatch: {}
 
 permissions:
-  contents: write   # Permite hacer commit/push al repo
+  contents: write
+
+# Evita que dos runs intenten pushear al mismo tiempo
+concurrency:
+  group: db-commit-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   run-pipeline:
-    if: ${{ github.actor != 'github-actions[bot]' }}  # evita bucles infinitos
+    if: ${{ github.actor != 'github-actions[bot]' }}
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
+      # 1) Checkout EN LA RAMA (no en detached HEAD)
+      - name: Checkout main branch
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # obtiene historial completo para poder commitear
+          ref: main
+          fetch-depth: 0
+          persist-credentials: true  # usa GITHUB_TOKEN para push
 
       - name: Set up Python 3.9.12
         uses: actions/setup-python@v5
@@ -46,26 +54,16 @@ jobs:
 
       - name: Verify dataset presence
         run: |
-          if [ ! -f "data/lifestyle_health_kaggle.csv" ] && [ ! -f "data/lifestyle_health_kaggle.xlsx" ]; then
-            echo "❌ Dataset no encontrado en data/. Sube el CSV o ajusta src/config.py"
-            exit 1
-          fi
-          echo "✅ Dataset encontrado."
+          test -f "data/lifestyle_health_kaggle.csv" -o -f "data/lifestyle_health_kaggle.xlsx"
 
       - name: Run pipeline (dataset -> SQLite -> CSV)
         run: |
           python src/to_sqlite_and_export.py
-
-      - name: Validate DB
-        run: |
           python src/validate_db.py
-
-      - name: List generated DB files
-        run: |
-          echo "Contenido de /db"
           ls -la db
 
-      - name: Upload artifacts (para descarga manual)
+      # (Opcional) Subir artifacts además de commitear
+      - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
           name: db-artifacts
@@ -75,7 +73,15 @@ jobs:
           if-no-files-found: error
           retention-days: 7
 
-      - name: Commit and push results to repo
+      # 2) SINCRONIZA con el remoto antes de commitear/pushear
+      - name: Sync with remote (rebase)
+        run: |
+          git config pull.rebase true
+          git fetch origin main
+          git pull --rebase origin main
+
+      # 3) Commit + Push (solo si hay cambios)
+      - name: Commit and push DB outputs
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
@@ -83,8 +89,9 @@ jobs:
           git add db/proyecto.db db/export.csv
 
           if git diff --cached --quiet; then
-            echo "No hay cambios nuevos en db/, nada que commitear."
+            echo "No hay cambios en db/, nada que commitear."
           else
             git commit -m "CI: actualiza DB y export CSV [skip ci]"
+            # Usa --force-with-lease SOLO si sigues recibiendo non-fast-forward
             git push origin HEAD:main
           fi
