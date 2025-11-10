@@ -1,0 +1,19 @@
+__pycache__/
+*.py[codz]
+*$py.class
+.env
+.venv/
+env/
+venv/
+.ipynb_checkpoints
+.pytest_cache/
+.cache
+build/
+dist/
+*.egg-info/
+db.sqlite3
+db.sqlite3-journal
+# VS Code / IDE
+# .vscode/
+# .idea/
+
