@@ -11,59 +11,84 @@ on:
   workflow_dispatch: {}
 
 permissions:
-  contents: write
+  contents: write   # necesario para poder hacer push con GITHUB_TOKEN
 
-# Evita que dos runs intenten pushear al mismo tiempo
+# Evita que dos ejecuciones pisen el push simultáneamente
 concurrency:
   group: db-commit-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
   run-pipeline:
+    # Evita loop por commits del propio bot
     if: ${{ github.actor != 'github-actions[bot]' }}
     runs-on: ubuntu-latest
 
     steps:
-      # 1) Checkout EN LA RAMA (no en detached HEAD)
+      # 1) Checkout EN main (no detached HEAD) con historial completo
       - name: Checkout main branch
         uses: actions/checkout@v4
         with:
           ref: main
           fetch-depth: 0
-          persist-credentials: true  # usa GITHUB_TOKEN para push
+          persist-credentials: true
 
+      # 2) Python 3.9.12
       - name: Set up Python 3.9.12
         uses: actions/setup-python@v5
         with:
           python-version: "3.9.12"
           cache: "pip"
 
+      # 3) Asegurar UTF-8 para evitar UnicodeEncodeError en prints
       - name: Ensure UTF-8 encoding
         run: |
           echo "PYTHONIOENCODING=utf-8" >> $GITHUB_ENV
           echo "PYTHONUTF8=1" >> $GITHUB_ENV
 
+      # 4) Pin inicial para evitar incompatibilidades binaras numpy/pandas
       - name: Pin numpy/pandas first
         run: |
           python -m pip install --upgrade pip
           pip install "numpy==1.26.4" "pandas==2.2.2"
 
+      # 5) Resto de dependencias del proyecto
       - name: Install dependencies
         run: |
           pip install -r requirements.txt --no-cache-dir
 
+      # 6) (Opcional) Mostrar versiones para depuración
+      - name: Show versions
+        run: |
+          python - << 'PY'
+          import sys, numpy, pandas
+          print(sys.version)
+          print("numpy", numpy.__version__)
+          print("pandas", pandas.__version__)
+          PY
+
+      # 7) Verificar dataset presente en data/
       - name: Verify dataset presence
         run: |
-          test -f "data/lifestyle_health_kaggle.csv" -o -f "data/lifestyle_health_kaggle.xlsx"
+          if [ ! -f "data/lifestyle_health_kaggle.csv" ] && [ ! -f "data/lifestyle_health_kaggle.xlsx" ]; then
+            echo "❌ Dataset no encontrado en data/. Sube el CSV/XLSX o ajusta src/config.py"
+            exit 1
+          fi
+          echo "✅ Dataset encontrado."
 
+      # 8) Ejecutar pipeline y validación
       - name: Run pipeline (dataset -> SQLite -> CSV)
         run: |
           python src/to_sqlite_and_export.py
           python src/validate_db.py
+
+      - name: List generated DB files
+        run: |
+          echo "Contenido de /db"
           ls -la db
 
-      # (Opcional) Subir artifacts además de commitear
-      - name: Upload artifacts
+      # 9) Subir artifacts para descarga manual desde Actions
+      - name: Upload artifacts (db files)
         uses: actions/upload-artifact@v4
         with:
           name: db-artifacts
@@ -73,14 +98,18 @@ jobs:
           if-no-files-found: error
           retention-days: 7
 
-      # 2) SINCRONIZA con el remoto antes de commitear/pushear
-      - name: Sync with remote (rebase)
+      # 10) Sincronizar con remoto ANTES de commitear (usando stash para evitar 'unstaged changes')
+      - name: Sync with remote (rebase using stash)
         run: |
           git config pull.rebase true
           git fetch origin main
+          # guarda cambios locales (db/*) temporalmente
+          git stash push -m "temp-stash-before-rebase" || true
           git pull --rebase origin main
+          # restaura cambios
+          git stash pop || true
 
-      # 3) Commit + Push (solo si hay cambios)
+      # 11) Commit + push de los outputs (solo si hay cambios reales)
       - name: Commit and push DB outputs
         run: |
           git config user.name  "github-actions[bot]"
@@ -91,7 +120,10 @@ jobs:
           if git diff --cached --quiet; then
             echo "No hay cambios en db/, nada que commitear."
           else
+            # Opcional: escribir un sello de tiempo para asegurar cambio (si lo necesitas)
+            # date +%Y%m%d%H%M%S > db/VERSION.txt
+            # git add db/VERSION.txt
+
             git commit -m "CI: actualiza DB y export CSV [skip ci]"
-            # Usa --force-with-lease SOLO si sigues recibiendo non-fast-forward
             git push origin HEAD:main
           fi
