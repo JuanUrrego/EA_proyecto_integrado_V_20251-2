@@ -1,0 +1,64 @@
+name: CI - SQLite pipeline
+
+on:
+  push:
+    branches: [ "main" ]
+    paths:
+      - "src/**"
+      - "data/**"
+      - "requirements.txt"
+      - ".github/workflows/ci-pipeline.yml"
+  workflow_dispatch: {}
+
+jobs:
+  run-pipeline:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.9.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.9.12"
+          cache: "pip"
+
+      - name: Ensure UTF-8 (avoid UnicodeEncodeError)
+        run: |
+          echo "PYTHONIOENCODING=utf-8" >> $GITHUB_ENV
+          echo "PYTHONUTF8=1" >> $GITHUB_ENV
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Verify dataset presence
+        run: |
+          ls -la
+          ls -la data || true
+          python - << 'PYCODE'
+          import os, sys
+          if not (os.path.exists("data/lifestyle_health_kaggle.csv") or os.path.exists("data/lifestyle_health_kaggle.xlsx")):
+              sys.exit("Dataset no encontrado en data/. Sube el CSV/XLSX o ajusta src/config.py")
+          print("Dataset OK")
+          PYCODE
+
+      - name: Run pipeline (dataset -> SQLite -> CSV)
+        run: |
+          python src/to_sqlite_and_export.py
+
+      - name: Validate DB
+        run: |
+          python src/validate_db.py
+
+      - name: Upload artifacts (db files)
+        uses: actions/upload-artifact@v4
+        with:
+          name: db-artifacts
+          path: |
+            db/proyecto.db
+            db/export.csv
+          if-no-files-found: error
+          retention-days: 7
