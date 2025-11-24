@@ -1,7 +1,7 @@
 numpy==1.26.4
 pandas==2.2.2
+matplotlib==3.8.2
+seaborn==0.12.2
 openpyxl==3.1.2
 pyarrow==14.0.2
-matplotlib==3.7.2
-seaborn==0.12.2
 kagglehub[pandas-datasets]>=0.3.8

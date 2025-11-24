@@ -1,73 +1,46 @@
-[Lifestyle_and_Health_Risk_Prediction_Synthetic_Dataset (1).csv](https://github.com/user-attachments/files/23443070/Lifestyle_and_Health_Risk_Prediction_Synthetic_Dataset.1.csv)# EA_proyecto_integrado_V_20251-2
+# Proyecto Integrado V – Análisis de Estilos de Vida y Riesgos de Salud
 
-# Proyecto: Predicción de Riesgos de Salud a partir de Estilos de Vida
+Repositorio: https://github.com/JuanUrrego/EA_proyecto_integrado_V_20251-2
 
-> **Stack base:** Python **3.9.12**, SQLite, pandas.  
+Este proyecto desarrolla un proceso completo de ingeniería de datos aplicado a un dataset de estilos de vida, con el objetivo de identificar patrones asociados a riesgos de salud en población adulta. Forma parte del Proyecto Integrado V y documenta todo el flujo: ingesta → limpieza → enriquecimiento → análisis exploratorio, junto con evidencia técnica, scripts y el informe académico en Normas APA.
 
-## Objetivo
-Evidenciar el flujo **dataset (Kaggle) → SQLite → CSV** y la documentación **APA (Etapa 1)** para este caso vamos a identificar patrones entre hábitos (ejercicio, sueño, consumo) y riesgos de salud (hipertensión/diabetes).
+## Objetivo General
+Implementar un proceso de transformación y análisis descriptivo de datos basado en un dataset público de estilos de vida, con el fin de comprender patrones asociados a riesgos de salud en población adulta de Medellín.
+
+## Objetivos Específicos
+- Preparar y depurar los datos descargados desde Kaggle.
+- Enriquecer la información mediante variables temporales y categorías analíticas.
+- Realizar análisis exploratorio con estadísticas y visualizaciones.
+- Documentar todo el proceso en GitHub y APA.
 
 ## Dataset
-- **Nombre**: Lifestyle_and_Health_Risk_Prediction_Dataset  
-- **Autor(a)**: zahranusrat  
-- **Enlace**: https://www.kaggle.com/datasets/zahranusrat/lifestyle-and-health-risk-prediction-dataset
-- Licencia: CC0: Public Domain (Dominio Público)
-- Dataset: 
-[Uploading Lifestyle_and_Health_Risk_Prediction_Synthetic_Dataset (1).csv…]()
+Fuente: Kaggle – Lifestyle and Health Risk Prediction Dataset  
+Autor: zahranusrat  
+Licencia: CC0 (Dominio Público)  
+Registros: 4.257  
 
+## Metodología
+1. Ingesta y preparación de datos  
+2. Diseño del pipeline  
+3. Limpieza de datos  
+4. Enriquecimiento del dataset  
+5. Análisis exploratorio descriptivo (EDA)
 
-## Requisitos
-- Python **3.9.12**
-- `pip install -r requirements.txt`
-
-## Estructura
+## Ejecución
 ```
-data/                 # dataset original o enlace en README
-db/
-  ├─ proyecto.db      # base SQLite
-  └─ export.csv       # exportación desde SQLite
-docs/
-  ├─ APA_Etapa1.docx  # documento APA (Etapa 1)
-  └─ Gantt.xlsx       # diagrama de Gantt (WBS)
-scripts/
-  ├─ load_to_sqlite.py
-  └─ export_from_sqlite.py
-src/
-  └─ ingestar.py      # clase para ingesta Kaggle -> DataFrame
-proyecto_integrador.py # wrapper (py_modules)
-README.md
-setup.py
-requirements.txt
-```
-
-## Uso rápido (descarga Kaggle con `kagglehub`)
-```python
-from src.ingestar import Ingestar
-
-ing = Ingestar()
-# Referencia Kaggle:
-# 'zahranusrat/lifestyle-and-health-risk-prediction-dataset'
-path = ing.download_dataset_zip("zahranusrat/lifestyle-and-health-risk-prediction-dataset")
-data_dir = ing.extract_zip_files(path)
-df = ing.load_dataset_as_dataframe(data_dir)
-print(df.head())
-```
-
-## Pipeline SQLite
-```bash
-python scripts/load_to_sqlite.py --csv data/lifestyle_health_sample.csv --db db/proyecto.db --table lifestyle_health
+pip install -r requirements.txt
+python scripts/load_to_sqlite.py --csv data/lifestyle_health_kaggle.csv --db db/proyecto.db --table lifestyle_health
 python scripts/export_from_sqlite.py --db db/proyecto.db --table lifestyle_health --out db/export.csv
 ```
 
-## APA (Etapa 1)
-Documento en `docs/APA_Etapa1.docx` con:
-- Portada, listado de tablas/figuras.
-- Resumen.
-- Objetivo general y específicos.
-- Metodología.
-- Resultados-
-- Referencias.
+## Estructura del Repositorio
+data/, db/, docs/, notebooks/, scripts/, src/, README.md
 
-## Créditos y referencias
-- Kaggle dataset (zahranusrat).
-- Formato APA 7ª edición (OWL Purdue).
+## Resultados
+Resumen de patrones de IMC, ejercicio, sueño e ingesta de azúcar, con tendencias estables entre 2022–2024.
+
+## Referencias
+- Kaggle  
+- Python 3.9.12  
+- Pandas  
+- Purdue OWL APA 7  
