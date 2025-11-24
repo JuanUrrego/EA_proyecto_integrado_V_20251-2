@@ -152,7 +152,7 @@ python scripts/export_from_sqlite.py --db db/proyecto.db --table lifestyle_healt
 ```
 
 ## Estructura del Repositorio
-data/, db/, docs/, notebooks/, scripts/, src/, README.md
+data/, db/, docs/, src/, README.md
 
 ## Resultados
 Resumen de patrones de IMC, ejercicio, sueño e ingesta de azúcar, con tendencias estables entre 2022–2024.
