@@ -3,7 +3,8 @@ Ingeniería de Software y Datos – IU Digital de Antioquia
 
 Repositorio: https://github.com/JuanUrrego/EA_proyecto_integrado_V_20251-2
 
-Este proyecto desarrolla un proceso completo de ingeniería de datos aplicado a un dataset de estilos de vida, con el objetivo de identificar patrones asociados a riesgos de salud en población adulta. Forma parte del Proyecto Integrado V y documenta todo el flujo: ingesta → limpieza → enriquecimiento → análisis exploratorio, junto con evidencia técnica, scripts y el informe académico en Normas APA.
+Este proyecto desarrolla un proceso completo de ingeniería de datos aplicado a un dataset de estilos de vida, con el objetivo de identificar patrones asociados a riesgos de salud en población adulta. 
+Forma parte del Proyecto Integrado V y documenta todo el flujo: ingesta → limpieza → enriquecimiento → análisis exploratorio, junto con evidencia técnica, scripts y el informe académico en Normas APA.
 
 🧭 Objetivo General
 
@@ -108,6 +109,7 @@ Ingesta de azúcar mayormente baja/media
 │   └── ingestar.py
 ├── requirements.txt
 └── README.md
+
 
 
 ⚙️ Ejecución del Pipeline
