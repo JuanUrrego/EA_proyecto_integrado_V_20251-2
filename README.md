@@ -2,7 +2,6 @@
 Ingeniería de Software y Datos – IU Digital de Antioquia
 
 Repositorio: https://github.com/JuanUrrego/EA_proyecto_integrado_V_20251-2
-Kaggle: https://www.kaggle.com/datasets/zahranusrat/lifestyle-and-health-risk-prediction-dataset
 
 Este proyecto desarrolla un proceso completo de ingeniería de datos aplicado a un dataset de estilos de vida, con el objetivo de identificar patrones asociados a riesgos de salud en población adulta. Forma parte del Proyecto Integrado V y documenta todo el flujo: ingesta → limpieza → enriquecimiento → análisis exploratorio, junto con evidencia técnica, scripts y el informe académico en Normas APA.
 
@@ -28,15 +27,10 @@ Licencia: CC0 (Dominio Público)
 Registros: 4.257
 
 Este dataset contiene información clave sobre hábitos y condiciones relacionadas con la salud:
-
 Edad (age)
-
 Índice de Masa Corporal (bmi)
-
 Horas de sueño (sleep)
-
 Ingesta de azúcar (sugar_intake)
-
 Ejercicio semanal (exercise)
 
 🏗️ Metodología Aplicada
@@ -46,9 +40,7 @@ El desarrollo del proyecto siguió un enfoque ágil utilizando Scrum, organizand
 1️⃣ Ingesta y Preparación de Datos
 
 Descarga del dataset desde Kaggle.
-
 Registro de licencia, fuente y ruta.
-
 Carga a una base SQLite.
 
 Exportación a CSV como validación de integridad.
@@ -60,65 +52,41 @@ Dataset (Kaggle) → Limpieza → Enriquecimiento → SQLite → CSV Final
 Incluye:
 
 Control de versiones GitHub
-
 Scripts para ingestión y exportación
-
 Notebook con trazabilidad completa
 
 3️⃣ Limpieza de Datos
 
 Eliminación de duplicados
-
 Corrección de valores inconsistentes
-
 Normalización de tipos de datos
-
 Estandarización de nombres de columnas
-
 Documentación de cada transformación
 
 4️⃣ Enriquecimiento del Dataset
 
 Creación de fechas aleatorias (2022–2024)
-
 Derivación de columnas: año, mes, día
-
 Categorización:
-
 grupos de edad
-
 IMC
-
 niveles de sueño
-
 niveles de ejercicio
-
 niveles de ingesta de azúcar
 
 5️⃣ Análisis Exploratorio (EDA)
 
 Incluyó:
-
 Estadísticas descriptivas
-
 Histogramas
-
 Gráficos de barras
-
 Matriz de correlación
-
 Tendencias temporales
-
 Principales hallazgos:
-
 Edad promedio: ~49 años
-
 IMC promedio: 26.8 (sobrepeso)
-
 Actividad física baja/moderada predominante
-
 Horas de sueño centradas entre 6–8
-
 Ingesta de azúcar mayormente baja/media
 
 📁 Estructura del Repositorio
@@ -129,7 +97,7 @@ Ingesta de azúcar mayormente baja/media
 │   └── export.csv
 ├── docs/
 │   ├── APA_Etapa1.docx
-│   ├── APA_Etapa2.docx
+│   └── APA_Etapa2.docx
 │   └── graficos/
 ├── notebooks/
 │   └── etapa_2_limpieza_enriquecimiento.ipynb
@@ -140,6 +108,7 @@ Ingesta de azúcar mayormente baja/media
 │   └── ingestar.py
 ├── requirements.txt
 └── README.md
+
 
 ⚙️ Ejecución del Pipeline
 1. Instalar dependencias
@@ -155,15 +124,12 @@ python scripts/export_from_sqlite.py --db db/proyecto.db --table lifestyle_healt
 
 El análisis descriptivo permitió caracterizar los hábitos de la población y detectar:
 
-Riesgo nutricional asociado al sobrepeso.
-
 Tendencias de sedentarismo.
 
 Hábitos de sueño relativamente adecuados.
 
 Poca variación temporal en los registros (fechas sintéticas).
 
-Estos resultados generan un insumo analítico sólido para la Etapa 3, donde se realizarán visualizaciones y posibles modelos predictivos.
 
 📝 Referencias
 
