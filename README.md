@@ -21,34 +21,7 @@ Registros: 4.257
 https://www.kaggle.com/datasets/zahranusrat/lifestyle-and-health-risk-prediction-dataset
 
 =======
-📘 Proyecto Integrado V – Análisis de Estilos de Vida y Riesgos de Salud
-Ingeniería de Software y Datos – IU Digital de Antioquia
-
 Repositorio: https://github.com/JuanUrrego/EA_proyecto_integrado_V_20251-2
-
-Este proyecto desarrolla un proceso completo de ingeniería de datos aplicado a un dataset de estilos de vida, con el objetivo de identificar patrones asociados a riesgos de salud en población adulta. 
-Forma parte del Proyecto Integrado V y documenta todo el flujo: ingesta → limpieza → enriquecimiento → análisis exploratorio, junto con evidencia técnica, scripts y el informe académico en Normas APA.
-
-🧭 Objetivo General
-
-Implementar un proceso de transformación y análisis descriptivo de datos basado en un dataset público de estilos de vida, con el fin de comprender patrones asociados a riesgos de salud en población adulta de Medellín.
-
-🎯 Objetivos Específicos
-
-Preparar y depurar los datos descargados desde Kaggle, registrando su origen, estandarizando nombres y corrigiendo duplicados o inconsistencias.
-
-Enriquecer la información mediante variables temporales (año, mes, día) y categorías analíticas (IMC, grupos de edad, sueño, actividad física, ingesta de azúcar).
-
-Realizar análisis exploratorio mediante estadísticas descriptivas, histogramas, correlaciones y tendencias.
-
-Documentar todo el proceso y garantizar trazabilidad mediante notebooks, scripts y el documento APA.
-
-📊 Dataset
-
-Fuente: Kaggle – Lifestyle and Health Risk Prediction Dataset
-Autor: zahranusrat
-Licencia: CC0 (Dominio Público)
-Registros: 4.257
 
 Este dataset contiene información clave sobre hábitos y condiciones relacionadas con la salud:
 Edad (age)
