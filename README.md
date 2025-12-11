@@ -24,6 +24,9 @@ https://www.kaggle.com/datasets/zahranusrat/lifestyle-and-health-risk-prediction
 =======
 Repositorio: https://github.com/JuanUrrego/EA_proyecto_integrado_V_20251-2
 
+PowerBI: https://app.powerbi.com/view?r=eyJrIjoiNWQ2M2Y0ZDctNTE0Zi00MTJlLThhNDQtZWRmM2I4ZmQwYTFjIiwidCI6ImFmMzhhOGVhLThjNjMtNDA1NC1iNGNkLTVlOTE4YWE0OGU0OSIsImMiOjR9
+
+
 Este dataset contiene información clave sobre hábitos y condiciones relacionadas con la salud:
 Edad (age)
 Índice de Masa Corporal (bmi)
