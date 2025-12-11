@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Proyecto Integrado V – Análisis de Estilos de Vida y Riesgos de Salud
 
 Repositorio: https://github.com/JuanUrrego/EA_proyecto_integrado_V_20251-2
@@ -20,35 +19,9 @@ Autor: zahranusrat
 Licencia: CC0 (Dominio Público)  
 Registros: 4.257  
 https://www.kaggle.com/datasets/zahranusrat/lifestyle-and-health-risk-prediction-dataset
+
 =======
-📘 Proyecto Integrado V – Análisis de Estilos de Vida y Riesgos de Salud
-Ingeniería de Software y Datos – IU Digital de Antioquia
-
 Repositorio: https://github.com/JuanUrrego/EA_proyecto_integrado_V_20251-2
-
-Este proyecto desarrolla un proceso completo de ingeniería de datos aplicado a un dataset de estilos de vida, con el objetivo de identificar patrones asociados a riesgos de salud en población adulta. 
-Forma parte del Proyecto Integrado V y documenta todo el flujo: ingesta → limpieza → enriquecimiento → análisis exploratorio, junto con evidencia técnica, scripts y el informe académico en Normas APA.
-
-🧭 Objetivo General
-
-Implementar un proceso de transformación y análisis descriptivo de datos basado en un dataset público de estilos de vida, con el fin de comprender patrones asociados a riesgos de salud en población adulta de Medellín.
-
-🎯 Objetivos Específicos
-
-Preparar y depurar los datos descargados desde Kaggle, registrando su origen, estandarizando nombres y corrigiendo duplicados o inconsistencias.
-
-Enriquecer la información mediante variables temporales (año, mes, día) y categorías analíticas (IMC, grupos de edad, sueño, actividad física, ingesta de azúcar).
-
-Realizar análisis exploratorio mediante estadísticas descriptivas, histogramas, correlaciones y tendencias.
-
-Documentar todo el proceso y garantizar trazabilidad mediante notebooks, scripts y el documento APA.
-
-📊 Dataset
-
-Fuente: Kaggle – Lifestyle and Health Risk Prediction Dataset
-Autor: zahranusrat
-Licencia: CC0 (Dominio Público)
-Registros: 4.257
 
 Este dataset contiene información clave sobre hábitos y condiciones relacionadas con la salud:
 Edad (age)
@@ -71,10 +44,8 @@ Exportación a CSV como validación de integridad.
 
 2️⃣ Diseño del Pipeline de Procesamiento
 Dataset (Kaggle) → Limpieza → Enriquecimiento → SQLite → CSV Final
->>>>>>> 06f91451d9880a52aa6cb9d1c5927d59f8481565
 
 
-<<<<<<< HEAD
 ## Ejecución
 ```
 pip install -r requirements.txt
@@ -150,13 +121,11 @@ pip install -r requirements.txt
 python scripts/load_to_sqlite.py --csv data/lifestyle_health_kaggle.csv --db db/proyecto.db --table lifestyle_health
 
 3. Exportar a CSV
->>>>>>> 06f91451d9880a52aa6cb9d1c5927d59f8481565
 python scripts/export_from_sqlite.py --db db/proyecto.db --table lifestyle_health --out db/export.csv
 ```
 
-<<<<<<< HEAD
 ## Estructura del Repositorio
-data/, db/, docs/, notebooks/, scripts/, src/, README.md
+data/, db/, docs/, src/, README.md
 
 ## Resultados
 Resumen de patrones de IMC, ejercicio, sueño e ingesta de azúcar, con tendencias estables entre 2022–2024.
@@ -170,21 +139,15 @@ Resumen de patrones de IMC, ejercicio, sueño e ingesta de azúcar, con tendenci
 📈 Resultados del Análisis
 
 El análisis descriptivo permitió caracterizar los hábitos de la población y detectar:
-
 Tendencias de sedentarismo.
-
 Hábitos de sueño relativamente adecuados.
-
 Poca variación temporal en los registros (fechas sintéticas).
 
 
 📝 Referencias
 
 Kaggle – Lifestyle and Health Risk Prediction Dataset
-
 Python Software Foundation – Documentación Python 3.9.12
-
 Pandas Development Team
-
 Purdue OWL – APA 7
->>>>>>> 06f91451d9880a52aa6cb9d1c5927d59f8481565
+
