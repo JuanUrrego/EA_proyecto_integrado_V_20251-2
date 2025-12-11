@@ -9,9 +9,13 @@ Implementar un proceso de transformación y análisis descriptivo de datos basad
 
 ## Objetivos Específicos
 --Preparar y depurar los datos descargados desde Kaggle, asegurando su calidad mediante estandarización, corrección de inconsistencias y validación estructural.
+
 --Enriquecer el dataset mediante la creación de variables temporales (año, mes, día) y categorías analíticas como grupos de edad, niveles de IMC, sueño, ejercicio e ingesta de azúcar.
+
 --Realizar un análisis exploratorio robusto, empleando estadísticas descriptivas y visualizaciones iniciales para identificar patrones generales y relaciones entre las variables clave.
+
 --Construir un dashboard descriptivo en Power BI que permita sintetizar, comparar e interpretar de manera visual los principales hallazgos del análisis.
+
 --Documentar todo el proceso técnico y analítico en el repositorio de GitHub y en el informe académico siguiendo las Normas APA, garantizando trazabilidad y claridad metodológica.
 
 ## Dataset
@@ -157,6 +161,7 @@ El dashboard facilita la exploración de estos patrones de forma dinámica, conv
 - Pandas  
 - Purdue OWL APA 7  
 =======
+
 📈 Resultados del Análisis
 
 El análisis descriptivo, complementado con el dashboard interactivo en Power BI, permitió caracterizar de manera integral los hábitos y condiciones de la población analizada. Entre los principales hallazgos se destacan:
