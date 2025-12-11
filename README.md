@@ -8,15 +8,11 @@ Este proyecto desarrolla un proceso completo de ingeniería de datos aplicado a 
 Implementar un proceso de transformación y análisis descriptivo de datos basado en un dataset público de estilos de vida, con el fin de comprender patrones asociados a riesgos de salud en población adulta de Medellín.
 
 ## Objetivos Específicos
---Preparar y depurar los datos descargados desde Kaggle, asegurando su calidad mediante estandarización, corrección de inconsistencias y validación estructural.
-
---Enriquecer el dataset mediante la creación de variables temporales (año, mes, día) y categorías analíticas como grupos de edad, niveles de IMC, sueño, ejercicio e ingesta de azúcar.
-
---Realizar un análisis exploratorio robusto, empleando estadísticas descriptivas y visualizaciones iniciales para identificar patrones generales y relaciones entre las variables clave.
-
---Construir un dashboard descriptivo en Power BI que permita sintetizar, comparar e interpretar de manera visual los principales hallazgos del análisis.
-
---Documentar todo el proceso técnico y analítico en el repositorio de GitHub y en el informe académico siguiendo las Normas APA, garantizando trazabilidad y claridad metodológica.
+- 📂 Preparar y depurar los datos descargados desde Kaggle.
+- 🧩 Enriquecer el dataset mediante variables temporales y categorizaciones.
+- 🔍 Realizar análisis exploratorio con estadísticas y visualizaciones.
+- 📊 Construir un dashboard descriptivo en Power BI.
+- 📚 Documentar el proceso completo en GitHub y APA.
 
 ## Dataset
 Fuente: Kaggle – Lifestyle and Health Risk Prediction Dataset  
@@ -61,6 +57,7 @@ Incluye:
 Control de versiones GitHub
 Scripts para ingestión y exportación
 Notebook con trazabilidad completa
+```
 
 3️⃣ Limpieza de Datos
 
@@ -108,6 +105,7 @@ Gráfico temporal basado en la fecha generada
 Filtros interactivos por año, grupo de edad y categorías analíticas
 Este dashboard fortaleció la interpretación del análisis, permitiendo identificar visualmente la prevalencia de sobrepeso/obesidad, los bajos niveles de ejercicio y las diferencias entre edades en patrones de sueño y consumo de azúcar.
 
+```
 📁 Estructura del Repositorio
 ├── data/
 │   └── lifestyle_health_kaggle.csv
